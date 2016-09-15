@@ -1,10 +1,12 @@
 
 class Tile
-  def initialize(board, position)
+  attr_reader :bomb, :revealed
+
+  def initialize(board, position, random_bomb_number)
     @board = board
     @position = position
     @flag = false
-    @bomb = false
+    @bomb = random_bomb_number == 0 ? true : false
     @revealed = false
   end
 

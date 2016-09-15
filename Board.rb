@@ -23,4 +23,19 @@ class Board
     grid.length
   end
 
+  def render
+    @grid.each_with_index do |row, idx|
+      print "#{idx} "
+      row.each do |tile|
+        print "#{render_tile(tile)}"
+      end
+      puts
+    end
+  end
+
+  def render_tile(tile)
+    return "*" if tile.revealed? == false
+    return "_" if tile.revealed?
+    return "F" if tile.flagged?
+  end
 end
