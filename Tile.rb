@@ -11,7 +11,7 @@ class Tile
   end
 
   def flagged?
-    flag
+    @flag
   end
 
   def reveal
