@@ -5,8 +5,9 @@ class Board
     Board.new(grid)
   end
 
-  def initialize(grid)
-    @grid = grid
+  def initialize
+    @temp = Array.new(9) {Array.new(9)}
+    @grid = @temp.populate_board
   end
 
   def [](pos)
@@ -52,11 +53,22 @@ class Board
   def update_tile(pos, action)
     case action
     when "u"
-      @board[pos].unflag
+      @grid[pos].unflag
     when "f"
-      @board[pos].flag
+      @grid[pos].flag
     when "r"
-      @board[pos].reveal
+      @grid[pos].reveal
     end
   end
+
+  #iterate might not be neccisary, but is currently called by Game#developer_show
+
+  def loop_pos(&prc)
+    @grid.each do |row|
+      @grid.each do |square|
+        prc.call(square)
+      end
+    end
+  end
+
 end

@@ -3,6 +3,8 @@ require_relative "Board"
 require_relative "Player"
 
 class Game
+  attr_reader :board
+
   def initialize(board, player)
     @board = board
     @player = player
@@ -40,6 +42,7 @@ class Game
   #   @board.all? { |tile| tile.revealed }
   # end
 
+
   def explosion?(pos)
     return false if pos == nil
     x, y = pos
@@ -56,11 +59,14 @@ class Game
     gets.chomp.downcase
   end
 
+  def developer_show
+    @board.loop_pos{|tile| tile.inspect}
+  end
 end
 
 
 if __FILE__ == $PROGRAM_NAME
   player = Player.new
   game = Game.new(Board.create_grid, player)
-  game.play
+  game.develop_show
 end
