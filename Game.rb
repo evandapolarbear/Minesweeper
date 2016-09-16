@@ -31,6 +31,8 @@ class Game
       @board.render
       pos = get_position
       action = get_action
+      @board.update_tile(pos, action)
+
     end
   end
 
@@ -51,7 +53,7 @@ class Game
 
   def get_action
     puts "R F U"
-    gets.chomp
+    gets.chomp.downcase
   end
 
 end

@@ -29,6 +29,7 @@ class Board
       print "#{idx} "
       row.each do |tile|
         print " #{render_tile(tile)}"
+        p tile.inspect
       end
       puts
     end
@@ -46,5 +47,16 @@ class Board
     return "*" if tile.revealed == false
     return "_" if tile.revealed
     return "F" if tile.flagged?
+  end
+
+  def update_tile(pos, action)
+    case action
+    when "u"
+      @board[pos].unflag
+    when "f"
+      @board[pos].flag
+    when "r"
+      @board[pos].reveal
+    end
   end
 end

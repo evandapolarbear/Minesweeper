@@ -14,17 +14,36 @@ class Tile
     @flag
   end
 
+  def flag
+    @flag = true
+  end
+
+  def unflag
+    @flag = false
+  end
+
   def reveal
+    @revealed = true unless @flag == true || @bomb == true
   end
 
   def neighbors
+    x, y = @position
+    neighbors[x + 1, y]
+    [x - 1, y]
+    [x, y + 1]
+    [x, y -1]
+    [x + 1, y + 1]
+    [x + 1, y - 1]
+    [x - 1, y + 1]
+    [x - 1, y - 1]
+
   end
 
   def neighbor_bomb_count
   end
 
 
-  # def inspect
-  #
-  # end
+  def inspect
+
+  end
 end
